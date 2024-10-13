@@ -4,7 +4,8 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "es6"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,5 +23,6 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "typeRoots": ["./node_modules/@types", "./src/@types"]
 }
