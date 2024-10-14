@@ -1,4 +1,3 @@
-// src/utils/exportAudio.ts
 import { createReverbImpulseResponse } from './audioUtils';
 import toWav from 'audiobuffer-to-wav';
 
@@ -27,15 +26,15 @@ export const exportWavAudio = async (
   const convolver = offlineContext.createConvolver();
   convolver.buffer = createReverbImpulseResponse(offlineContext, decayTime);
 
-  // Same concept of reverb balancing used here
+  // same concept of reverb balancing used here
   const dryGain = offlineContext.createGain();
   const wetGain = offlineContext.createGain();
 
-  // Set the thresholds for dry and wet gain based on user input
+  // set the thresholds for dry and wet gain based on user input
   dryGain.gain.value = dryGainValue;
   wetGain.gain.value = wetGainValue;
 
-  // Frequency filters for the exported audio
+  // frequency filters for the exported audio
   const wetHighPassFilter = offlineContext.createBiquadFilter();
   wetHighPassFilter.type = 'highpass';
   wetHighPassFilter.frequency.value = highPassFrequency;
@@ -44,11 +43,11 @@ export const exportWavAudio = async (
   wetLowPassFilter.type = 'lowpass';
   wetLowPassFilter.frequency.value = lowPassFrequency;
 
-  // Connect the dry signal nodes
+  // connect the dry signal nodes
   source.connect(dryGain);
   dryGain.connect(offlineContext.destination);
 
-  // Connect the wet signal nodes
+  // connect the wet signal nodes
   source.connect(convolver);
   convolver.connect(wetHighPassFilter);
   wetHighPassFilter.connect(wetLowPassFilter);

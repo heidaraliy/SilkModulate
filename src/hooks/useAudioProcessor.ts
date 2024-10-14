@@ -1,4 +1,3 @@
-// src/hooks/useAudioProcessor.ts
 import { useState, useEffect, useRef } from 'react';
 import { exportMp3Audio } from '../utils/exportMp3Audio';
 import { exportProcessedAudioBuffer } from '../utils/exportProcessedAudioBuffer';
@@ -56,13 +55,13 @@ export const useAudioProcessor = () => {
 
       if (!isCancelled) {
         setProcessedBuffer(processedBuffer);
-        // Encode to MP3
+        // encode to MP3 -- lightweight, browser-based playback works better vs. WAV
         const mp3Blob = await exportMp3Audio(processedBuffer);
 
         const blobUrl = URL.createObjectURL(mp3Blob);
         setAudioSrc(blobUrl);
 
-        // Revoke previous Blob URL if necessary
+        //revoke previous Blob URL if necessary
         if (currentBlobUrl.current) {
           URL.revokeObjectURL(currentBlobUrl.current);
         }
@@ -80,7 +79,7 @@ export const useAudioProcessor = () => {
 
   useEffect(() => {
     return () => {
-      // Revoke Blob URL when component unmounts
+      // revoke Blob URL when component unmounts
       if (currentBlobUrl.current) {
         URL.revokeObjectURL(currentBlobUrl.current);
       }

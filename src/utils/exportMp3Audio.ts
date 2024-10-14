@@ -1,4 +1,3 @@
-// src/utils/exportMp3Audio.ts
 import lamejs from 'lamejs';
 
 export const exportMp3Audio = async (
@@ -38,7 +37,7 @@ export const exportMp3Audio = async (
     }
   }
 
-  // Finish encoding
+  // finish encoding
   mp3buf = mp3Encoder.flush();
   if (mp3buf.length > 0) {
     mp3Data.push(mp3buf);

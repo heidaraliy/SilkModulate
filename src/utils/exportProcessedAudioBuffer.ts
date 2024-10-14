@@ -1,4 +1,3 @@
-// src/utils/exportProcessedAudioBuffer.ts
 import { createReverbImpulseResponse } from './audioUtils';
 
 export const exportProcessedAudioBuffer = async (
@@ -40,11 +39,11 @@ export const exportProcessedAudioBuffer = async (
   wetLowPassFilter.type = 'lowpass';
   wetLowPassFilter.frequency.value = lowPassFrequency;
 
-  // Connect the dry signal nodes
+  // connect the dry signal nodes
   source.connect(dryGain);
   dryGain.connect(offlineContext.destination);
 
-  // Connect the wet signal nodes
+  // connect the wet signal nodes
   source.connect(convolver);
   convolver.connect(wetHighPassFilter);
   wetHighPassFilter.connect(wetLowPassFilter);

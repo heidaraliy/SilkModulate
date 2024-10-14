@@ -1,4 +1,3 @@
-// src/components/AudioUploader.tsx
 import React, { useRef, useState, useEffect } from 'react';
 import { useAudioProcessor } from '../../hooks/useAudioProcessor';
 import { exportMp3Audio } from '../../utils/exportMp3Audio';
@@ -74,7 +73,7 @@ const AudioUploader: React.FC = () => {
       if (isPlaying) {
         audioElement.pause();
       } else {
-        // Start playback at 30 seconds
+        // start playback at 30 seconds
         audioElement.currentTime = 30;
         const playPromise = audioElement.play();
         if (playPromise !== undefined) {
@@ -90,7 +89,7 @@ const AudioUploader: React.FC = () => {
     const audioElement = audioElementRef.current;
     if (!audioElement) return;
 
-    // Update the audio element source when audioSrc changes
+    // update the audio element source when audioSrc changes
     if (audioSrc) {
       audioElement.src = audioSrc;
       audioElement.load();
@@ -128,12 +127,12 @@ const AudioUploader: React.FC = () => {
       setIsExporting(true);
       await delay(1000);
       try {
-        // Encode to MP3 for export
+        // encode to MP3 for export
         const mp3Blob = await exportMp3Audio(processedBuffer);
 
         const url = URL.createObjectURL(mp3Blob);
 
-        // Create a download link
+        // create a download link
         const a = document.createElement('a');
         a.href = url;
         a.download = `${fileName + ' (made with modul8r)' || 'your song (made with modul8r)'}.mp3`;
@@ -141,7 +140,7 @@ const AudioUploader: React.FC = () => {
         a.click();
         document.body.removeChild(a);
 
-        // Clean up
+        // clean up!
         URL.revokeObjectURL(url);
       } catch (error) {
         console.error('Export failed:', error);
@@ -159,7 +158,7 @@ const AudioUploader: React.FC = () => {
       setIsExporting(true);
       await delay(1000);
       try {
-        // Encode to WAV for export
+        // encode to WAV for export
         const wavBlob = await exportWavAudio(
           audioBuffer,
           decayTime,
@@ -172,7 +171,7 @@ const AudioUploader: React.FC = () => {
 
         const url = URL.createObjectURL(wavBlob);
 
-        // Create a download link
+        // create a download link
         const a = document.createElement('a');
         a.href = url;
         a.download = `${fileName + ' (made with modul8r)' || 'your song (made with modul8r)'}.wav`;
@@ -180,7 +179,7 @@ const AudioUploader: React.FC = () => {
         a.click();
         document.body.removeChild(a);
 
-        // Clean up
+        // clean up!
         URL.revokeObjectURL(url);
       } catch (error) {
         console.error('Export failed:', error);
@@ -194,16 +193,16 @@ const AudioUploader: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#F0D7FF] font-barlow tracking-tight max-w-2xl max-h-xl m-auto p-4 bg-white shadow-xl rounded-lg">
+    <div className="bg-[#F0D7FF] font-barlow tracking-tighter max-w-3xl max-h-xl m-auto p-4 bg-white shadow-xl rounded-lg">
       <img src={logo} alt="title-logo" className="w-128 m-auto" />
-      <h1 className="text-md mb-8 text-center mx-8 -mt-8 text-gray-700">
+      <h1 className="text-md mb-8 text-center mx-8 text-gray-700">
         Slow, speed up, and pitch shift audio files with ease. Upload a file,
         adjust the reverb decay time and pitch shift, then apply and preview
         your changes. Export to .mp3 and .wav to save your changes.
       </h1>
       <hr className="border-gray-300 border border-[1.25px]" />
       <div className="space-y-4">
-        <h1 className="font- text-xl font-bold my-4 text-left">Upload File</h1>
+        <h1 className="text-xl font-bold my-4 text-left box">Upload File</h1>
         <input
           type="file"
           accept="audio/*"

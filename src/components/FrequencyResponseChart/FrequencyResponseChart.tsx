@@ -1,4 +1,3 @@
-// src/components/FrequencyResponseChart.tsx
 import React from 'react';
 import {
   LineChart,
@@ -17,7 +16,7 @@ type FrequencyResponseChartProps = {
 const FrequencyResponseChart: React.FC<FrequencyResponseChartProps> = ({
   data,
 }) => {
-  // Format the tick labels to show frequencies in Hz or kHz
+  // format the tick labels to show frequencies in Hz or kHz
   const formatFrequency = (value: number) => {
     return value >= 1000 ? `${(value / 1000).toFixed(1)}k` : `${value}`;
   };
