@@ -53,7 +53,7 @@ const FrequencyResponseChart: React.FC<FrequencyResponseChartProps> = ({
           <Line
             type="monotone"
             dataKey="gain"
-            stroke="#8884d8"
+            stroke="#0ea5e9"
             dot={false}
             strokeWidth={3}
           />

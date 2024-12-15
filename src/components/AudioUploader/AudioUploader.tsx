@@ -193,31 +193,31 @@ const AudioUploader: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#9687b3] font-barlow tracking-tighter max-w-3xl max-h-xl m-auto p-4 shadow-xl rounded-lg">
-      <img src={logo} alt="title-logo" className="w-128 m-auto -mt-12" />
-      <h1 className="text-lg mb-8 -mt-16 text-center mx-8 text-slate-100">
+    <div className="bg-sky-600 border-2 border-zinc-800 font-arimo tracking-tighter max-w-3xl max-h-xl m-auto p-4 shadow-xl rounded-lg">
+      <img src={logo} alt="title-logo" className="w-[24rem] m-auto" />
+      <h1 className="text-lg mb-8 text-center mx-8 text-zinc-50">
         Slow, speed up, and pitch shift audio files with ease. Upload a file,
         adjust the reverb decay time and pitch shift, then apply and preview
         your changes. Export to .mp3 and .wav to save your changes.
       </h1>
 
       <div className="space-y-4">
-        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-slate-200">
+        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-zinc-200">
           <h1 className="text-xl font-bold my-2 text-left">Upload File</h1>
           <input
             type="file"
             accept="audio/*"
             ref={fileInputRef}
             onChange={handleFileUpload}
-            className="block w-full text-md mr-2
+            className=" mr-2
             file:mr-4 file:py-2 file:px-4
-            file:rounded-md file:border-0
-            file:text-md file:font-semibold
-            file:bg-blue-50 file:text-blue-700
-            hover:file:bg-blue-100"
+            file:rounded file:border-0 file:tracking-tighter
+            file:text-md
+            file:bg-blue-500 file:text-white
+            hover:file:bg-blue-700 hover:file:cursor-pointer"
           />
         </div>
-        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-slate-200">
+        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-zinc-200">
           <h1 className="text-xl font-bold mb-4 text-left">Reverberation</h1>
           <div className="grid grid-cols-1 gap-4">
             <div>
@@ -254,7 +254,7 @@ const AudioUploader: React.FC = () => {
             <div className="flex justify-center">
               <button
                 onClick={() => setShowAdvanced(!showAdvanced)}
-                className="m-4 py-2 px-2 bg-violet-500 text-white rounded hover:bg-violet-700"
+                className="m-4 py-2 px-2 bg-blue-500 text-white rounded hover:bg-blue-700"
                 data-tooltip-id="show-advanced-tooltip"
                 data-tooltip-html={`Set advanced parameters like Dry Gain, Wet Gain, High Pass and Low Pass Frequency Filters. <br><br> Mouse over the  ⓘ  to learn more about each parameter.`}
                 data-tooltip-place="right"
@@ -527,6 +527,12 @@ const AudioUploader: React.FC = () => {
                 </div>
               )}
             </button>
+            {isProcessing && (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="animate-spin rounded-full w-6 h-6 border-4 border-t-transparent border-indigo-500"></div>
+                <p className="text-gray-700">Applying changes...</p>
+              </div>
+            )}
           </div>
         </div>
         <div className="border-black border-2 p-4 rounded-md shadow-xl bg-slate-200">
@@ -540,7 +546,7 @@ const AudioUploader: React.FC = () => {
                 isProcessing ||
                 isExporting
               }
-              className="m-2 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
+              className="m-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 disabled:opacity-50"
             >
               Export as .wav
             </button>
@@ -552,17 +558,11 @@ const AudioUploader: React.FC = () => {
                 isProcessing ||
                 isExporting
               }
-              className="m-2 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
+              className="m-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 disabled:opacity-50"
             >
               Export as .mp3
             </button>
           </div>
-          {isProcessing && (
-            <div className="flex items-center justify-center space-x-2">
-              <div className="animate-spin rounded-full w-6 h-6 border-4 border-t-transparent border-indigo-500"></div>
-              <p className="text-gray-700">Applying changes...</p>
-            </div>
-          )}
           {isExporting && (
             <div className="flex items-center justify-center space-x-2">
               <div className="animate-spin rounded-full w-6 h-6 border-4 border-t-transparent border-indigo-500"></div>
