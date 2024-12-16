@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         arimo: ['Arimo', 'serif'],
+        vidaloka: ['Vidaloka', 'serif'],
       },
     },
   },

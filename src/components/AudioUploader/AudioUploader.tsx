@@ -135,7 +135,7 @@ const AudioUploader: React.FC = () => {
         // create a download link
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${fileName + ' (made with modul8r)' || 'your song (made with modul8r)'}.mp3`;
+        a.download = `${fileName + ' (made with SilkVerb)' || 'your song (made with SilkVerb)'}.mp3`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -174,7 +174,7 @@ const AudioUploader: React.FC = () => {
         // create a download link
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${fileName + ' (made with modul8r)' || 'your song (made with modul8r)'}.wav`;
+        a.download = `${fileName + ' (made with SilkVerb)' || 'your song (made with SilkVerb)'}.wav`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -193,32 +193,38 @@ const AudioUploader: React.FC = () => {
   };
 
   return (
-    <div className="bg-sky-600 border-2 border-zinc-800 font-arimo tracking-tighter max-w-3xl max-h-xl m-auto p-4 shadow-xl rounded-lg">
+    <div className="bg-[#2a3475] border-2 border-zinc-400 font-arimo tracking-tighter max-w-3xl max-h-xl m-auto p-4 shadow-xl rounded-lg">
       <img src={logo} alt="title-logo" className="w-[24rem] m-auto" />
-      <h1 className="text-lg mb-8 text-center mx-8 text-zinc-50">
+      <div className="text-md text-center mx-auto text-zinc-50 tracking-tight max-w-xl font-vidaloka -mt-2">
+        built by SilkForest.
+      </div>
+      <h1 className="text-md mb-8 mt-8 text-center mx-auto text-zinc-50 tracking-tight max-w-xl">
         Slow, speed up, and pitch shift audio files with ease. Upload a file,
         adjust the reverb decay time and pitch shift, then apply and preview
         your changes. Export to .mp3 and .wav to save your changes.
       </h1>
 
       <div className="space-y-4">
-        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-zinc-200">
-          <h1 className="text-xl font-bold my-2 text-left">Upload File</h1>
+        <div className="border-zinc-800 border-2 p-4 rounded-md shadow-xl bg-zinc-200">
+          <h1 className="text-2xl font-bold my-2 mb-4 text-left text-zinc-800 font-vidaloka">
+            Upload File
+          </h1>
           <input
             type="file"
             accept="audio/*"
             ref={fileInputRef}
             onChange={handleFileUpload}
             className=" mr-2
-            file:mr-4 file:py-2 file:px-4
-            file:rounded file:border-0 file:tracking-tighter
+            file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:tracking-tighter file:font-vidaloka
             file:text-md
             file:bg-blue-500 file:text-white
-            hover:file:bg-blue-700 hover:file:cursor-pointer"
+            hover:file:bg-blue-700 hover:file:cursor-pointer font-vidaloka"
           />
         </div>
-        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-zinc-200">
-          <h1 className="text-xl font-bold mb-4 text-left">Reverberation</h1>
+        <div className="border-zinc-800 border-2 p-4 rounded-md shadow-xl bg-zinc-200">
+          <h1 className="text-2xl font-bold my-2 mb-4 text-left text-zinc-800 font-vidaloka">
+            Reverberation
+          </h1>
           <div className="grid grid-cols-1 gap-4">
             <div>
               <div className="flex">
@@ -228,11 +234,11 @@ const AudioUploader: React.FC = () => {
                   data-tooltip-place="right"
                   data-tooltip-delay-show={500}
                   data-tooltip-delay-hide={300}
-                  className="mr-2 text-blue-500 cursor-pointer"
+                  className="mr-2 text-zinc-800 cursor-help"
                 >
                   ⓘ
                 </span>
-                <label className="block text-gray-700 font-medium mb-1">
+                <label className="block text-zinc-700 font-medium mb-1">
                   Reverb Decay Time (s): {decayTime}s
                 </label>
               </div>
@@ -254,7 +260,7 @@ const AudioUploader: React.FC = () => {
             <div className="flex justify-center">
               <button
                 onClick={() => setShowAdvanced(!showAdvanced)}
-                className="m-4 py-2 px-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+                className="font-vidaloka m-4 py-3 px-4 bg-blue-500 text-white rounded hover:bg-blue-700"
                 data-tooltip-id="show-advanced-tooltip"
                 data-tooltip-html={`Set advanced parameters like Dry Gain, Wet Gain, High Pass and Low Pass Frequency Filters. <br><br> Mouse over the  ⓘ  to learn more about each parameter.`}
                 data-tooltip-place="right"
@@ -268,9 +274,10 @@ const AudioUploader: React.FC = () => {
             </div>
             {showAdvanced && (
               <div className="">
+                <hr className="border-zinc-400 border-1 my-4" />
                 {/* Dry Gain */}
                 <div>
-                  <h1 className="text-lg font-bold mb-4 text-left">
+                  <h1 className="text-xl font-bold mb-4 text-left text-zinc-800 font-vidaloka">
                     Gain Staging
                   </h1>
                   <div className="flex">
@@ -280,11 +287,11 @@ const AudioUploader: React.FC = () => {
                       data-tooltip-place="right"
                       data-tooltip-delay-show={500}
                       data-tooltip-delay-hide={300}
-                      className="mr-2 text-blue-500 cursor-pointer"
+                      className="mr-2 text-zinc-800 cursor-help"
                     >
                       ⓘ
                     </span>
-                    <label className="block text-gray-700 font-medium mb-1">
+                    <label className="block text-zinc-700 font-medium mb-1">
                       Dry Gain: {dryGainValue.toFixed(2)}
                     </label>
                   </div>
@@ -312,11 +319,11 @@ const AudioUploader: React.FC = () => {
                       data-tooltip-place="right"
                       data-tooltip-delay-show={500}
                       data-tooltip-delay-hide={300}
-                      className="mr-2 text-blue-500 cursor-pointer"
+                      className="mr-2 text-zinc-800 cursor-help"
                     >
                       ⓘ
                     </span>
-                    <label className="block text-gray-700 font-medium mb-1">
+                    <label className="block text-zinc-700 font-medium mb-1">
                       Wet Gain: {wetGainValue.toFixed(2)}
                     </label>
                   </div>
@@ -336,7 +343,7 @@ const AudioUploader: React.FC = () => {
                   />
                 </div>
                 {/* High-Pass Filter Frequency */}
-                <h1 className="text-lg font-bold mb-4 text-left">
+                <h1 className="text-xl font-bold mb-4 text-left text-zinc-800 font-vidaloka mt-4">
                   Reverb Frequency Filters
                 </h1>
                 <div>
@@ -347,11 +354,11 @@ const AudioUploader: React.FC = () => {
                       data-tooltip-place="right"
                       data-tooltip-delay-show={500}
                       data-tooltip-delay-hide={300}
-                      className="mr-2 text-blue-500 cursor-pointer"
+                      className="mr-2 text-zinc-800 cursor-help"
                     >
                       ⓘ
                     </span>
-                    <label className="block text-gray-700 font-medium mb-1">
+                    <label className="block text-zinc-700 font-medium mb-1">
                       High Pass Filter Frequency (Hz): {highPassFrequency} Hz
                     </label>
                   </div>
@@ -379,11 +386,11 @@ const AudioUploader: React.FC = () => {
                       data-tooltip-place="right"
                       data-tooltip-delay-show={500}
                       data-tooltip-delay-hide={300}
-                      className="mr-2 text-blue-500 cursor-pointer"
+                      className="mr-2 text-zinc-800 cursor-help"
                     >
                       ⓘ
                     </span>
-                    <label className="block text-gray-700 font-medium mb-1">
+                    <label className="block text-zinc-700 font-medium mb-1">
                       Low Pass Filter Frequency (Hz): {lowPassFrequency} Hz
                     </label>
                   </div>
@@ -410,18 +417,18 @@ const AudioUploader: React.FC = () => {
                       data-tooltip-place="right"
                       data-tooltip-delay-show={500}
                       data-tooltip-delay-hide={300}
-                      className="mr-2 mt-0.5 text-blue-500 cursor-pointer"
+                      className="mr-2 mt-0.5 text-zinc-800 cursor-help"
                     >
                       ⓘ
                     </span>
-                    <h2 className="text-xl font-bold mb-2">
+                    <h1 className="text-2xl font-bold mb-4 text-left text-zinc-800 font-vidaloka">
                       Frequency Response
-                    </h2>
+                    </h1>
                   </div>
                   <FrequencyResponseChart data={frequencyData} />
                 </div>
                 {dryGainValue + wetGainValue > 1 && (
-                  <div className="flex justify-center border border-black rounded-lg bg-gray-100 p-4 my-4">
+                  <div className="flex justify-center border border-zinc-800 rounded-lg bg-gray-100 p-4 my-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="24px"
@@ -446,8 +453,8 @@ const AudioUploader: React.FC = () => {
         </div>
 
         {/* Pitch Shift */}
-        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-slate-200">
-          <h1 className="font-jersey10 text-xl font-bold mb-4 text-left">
+        <div className="border-zinc-800 border-2 p-4 rounded-md shadow-xl bg-slate-200">
+          <h1 className="text-2xl font-bold mb-4 text-left text-zinc-800 font-vidaloka">
             Pitch & Tempo Shift
           </h1>
           <div>
@@ -458,11 +465,11 @@ const AudioUploader: React.FC = () => {
                 data-tooltip-place="right"
                 data-tooltip-delay-show={500}
                 data-tooltip-delay-hide={300}
-                className="mr-2 text-blue-500 cursor-pointer"
+                className="mr-2 text-zinc-800 cursor-help"
               >
                 ⓘ
               </span>
-              <label className="block text-gray-700 font-medium mb-1">
+              <label className="block text-zinc-700 font-medium mb-1">
                 Pitch Shift (Semitones): {pitchShift}
               </label>
             </div>
@@ -479,8 +486,8 @@ const AudioUploader: React.FC = () => {
             />
           </div>
         </div>
-        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-slate-200">
-          <h1 className="text-xl font-bold mb-4 text-left">
+        <div className="border-zinc-800 border-2 p-4 rounded-md shadow-xl bg-slate-200">
+          <h1 className="text-2xl font-bold mb-4 text-left text-zinc-800 font-vidaloka">
             Apply & Preview Changes
           </h1>
           <div className="grid grid-cols-2 grid-rows-1">
@@ -490,7 +497,7 @@ const AudioUploader: React.FC = () => {
               disabled={
                 !needsProcessing || isProcessing || isPlaying || isExporting
               }
-              className="m-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
+              className="font-vidaloka m-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Apply Changes
             </button>
@@ -500,7 +507,7 @@ const AudioUploader: React.FC = () => {
               className="m-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
             >
               {isPlaying ? (
-                <div className="flex justify-center space-x-1">
+                <div className="font-vidaloka flex justify-center space-x-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="24px"
@@ -513,7 +520,7 @@ const AudioUploader: React.FC = () => {
                   <span>Stop Playback</span>
                 </div>
               ) : (
-                <div className="flex justify-center space-x-1">
+                <div className="font-vidaloka flex justify-center space-x-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="24px"
@@ -527,16 +534,20 @@ const AudioUploader: React.FC = () => {
                 </div>
               )}
             </button>
-            {isProcessing && (
-              <div className="flex items-center justify-center space-x-2">
-                <div className="animate-spin rounded-full w-6 h-6 border-4 border-t-transparent border-indigo-500"></div>
-                <p className="text-gray-700">Applying changes...</p>
-              </div>
-            )}
           </div>
+          {isProcessing && (
+            <div className="flex items-center justify-center space-x-2">
+              <div className="animate-spin rounded-full w-6 h-6 border-4 border-t-transparent border-blue-500 mt-4"></div>
+              <p className="text-zinc-800 mt-4 text-lg font-vidaloka">
+                Applying changes...
+              </p>
+            </div>
+          )}
         </div>
-        <div className="border-black border-2 p-4 rounded-md shadow-xl bg-slate-200">
-          <h1 className="text-xl font-bold mb-4 text-left">Export Audio</h1>
+        <div className="border-zinc-800 border-2 p-4 rounded-md shadow-xl bg-slate-200">
+          <h1 className="text-2xl font-bold mb-4 text-left text-zinc-800 font-vidaloka">
+            Export Audio
+          </h1>
           <div className="grid grid-cols-2 grid-rows-1">
             <button
               onClick={handleWavExport}
@@ -546,7 +557,7 @@ const AudioUploader: React.FC = () => {
                 isProcessing ||
                 isExporting
               }
-              className="m-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+              className="font-vidaloka m-2 px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-700 disabled:opacity-50"
             >
               Export as .wav
             </button>
@@ -558,15 +569,17 @@ const AudioUploader: React.FC = () => {
                 isProcessing ||
                 isExporting
               }
-              className="m-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+              className="font-vidaloka m-2 px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-700 disabled:opacity-50"
             >
               Export as .mp3
             </button>
           </div>
           {isExporting && (
             <div className="flex items-center justify-center space-x-2">
-              <div className="animate-spin rounded-full w-6 h-6 border-4 border-t-transparent border-indigo-500"></div>
-              <p className="text-gray-700">Exporting audio...</p>
+              <div className="animate-spin rounded-full w-6 h-6 border-4 border-t-transparent border-blue-500 mt-4"></div>
+              <p className="text-zinc-800 mt-4 text-lg font-vidaloka">
+                Exporting audio...
+              </p>
             </div>
           )}
         </div>
